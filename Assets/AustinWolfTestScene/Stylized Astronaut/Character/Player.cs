@@ -38,7 +38,7 @@ public class Player : MonoBehaviour {
 			if(controller.isGrounded){
 				moveDirection = transform.forward * Input.GetAxis("Vertical") * speed;
 				if (Input.GetKey ("space")) {
-					moveDirection.y += gravity*2;
+					moveDirection.y += gravity*1.2f;
 					anim.SetInteger ("AnimationPar", 0);
 					//Debug.Log("Jump");
 				}
