@@ -46,7 +46,7 @@ public class Player : MonoBehaviour {
 
 			float turn = Input.GetAxis("Horizontal");
 			transform.Rotate(0, turn * turnSpeed * Time.deltaTime, 0);
-			if ((transform.position.z > 20 && transform.position.z< 980) && (transform.position.x > 20 && transform.position.x< 980)){
+			if ((transform.position.z > 20 && transform.position.z< 3000) && (transform.position.x > 20 && transform.position.x< 980)){
 				controller.Move(moveDirection * Time.deltaTime);
 			}
 			else{
