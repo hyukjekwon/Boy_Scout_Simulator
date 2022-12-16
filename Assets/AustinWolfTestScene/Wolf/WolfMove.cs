@@ -15,7 +15,7 @@ public class WolfMove : MonoBehaviour
     private Animator anim;
     private AudioSource source;
     public  AudioClip[] Howls;
-    public float speed = 15.0f;
+    public float speed;
     public float lineofsightdistance = 100.0f;
     public float fieldofview = 45.0f;
     public float hearingdistance = 30.0f;
@@ -35,8 +35,8 @@ public class WolfMove : MonoBehaviour
     void Update()
     {   
         /*
-        General idea is that if the player is within viewing distance an there is an unobstructed line of sight then the wolf will walk towards at the player at 10.0f speed.
-        If the wolf is within hearing distance of the wolf it will then run at 15.0f speed.
+        General idea is that if the player is within viewing distance an there is an unobstructed line of sight then the wolf will walk towards at the player at 2.5f speed.
+        If the wolf is within hearing distance of the wolf it will then run at 5.0f speed.
         Otherwise it moves in the general area and plays various idle animations.
         */
 
@@ -76,7 +76,7 @@ public class WolfMove : MonoBehaviour
                 else{ //Within hearing distance
                     anim.SetInteger ("run", 1);
                     anim.SetInteger ("attack2", 0);
-                    navMeshA.speed = 15.0f;
+                    navMeshA.speed = 5.0f;
                     Debug.Log("I hear you");
                     navMeshA.isStopped = false;
                     if (Physics.Raycast(dest.position, -Vector3.up, out hit)) { //Line straight down
@@ -91,7 +91,7 @@ public class WolfMove : MonoBehaviour
             else{ //Only within seeing distance
                 anim.SetInteger ("walk", 1);
                 anim.SetInteger ("run", 0);
-                navMeshA.speed = 10.0f;
+                navMeshA.speed = 2.5f;
                 Debug.Log("I see you");
                 Debug.DrawLine (new Vector3(transform.position.x, transform.position.y+1, transform.position.z), hitplayer.point, Color.green);
                 navMeshA.isStopped = false;
