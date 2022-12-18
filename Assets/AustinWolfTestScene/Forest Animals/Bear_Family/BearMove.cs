@@ -119,7 +119,7 @@ public class BearMove : MonoBehaviour
                         else{
                             timer = 0;
                         }
-                        if(timer >= 1.2f){ //If player stay still for 1.2 seconds then run away
+                        if(timer >= 2f){ //If player stay still for 2 seconds then run away
                             scaredAway = true;
                             runAwayPos = transform.position - transform.forward * 100f;
                         }
@@ -127,6 +127,18 @@ public class BearMove : MonoBehaviour
                     }
                 }
                 else{ //Only within seeing distance
+                    //Test to see if player moved
+                    if (Vector3.Distance(LastPos, player.transform.position) == 0){
+                        timer+=Time.deltaTime;
+                    }
+                    else{
+                        timer = 0;
+                    }
+                    if(timer >= 2f){ //If player stay still for 2 seconds then run away
+                        scaredAway = true;
+                        runAwayPos = transform.position - transform.forward * 100f;
+                    }
+                    LastPos = player.transform.position;
                     anim.SetInteger ("walk", 1);
                     anim.SetInteger ("run", 0);
                     navMeshA.speed = 5.0f;

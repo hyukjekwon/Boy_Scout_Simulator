@@ -10,6 +10,7 @@ public class Candy : MonoBehaviour
     public bool candyLanded;
     bool canthrownew;
     public int candyCount = 10;
+    private float timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class Candy : MonoBehaviour
         canthrownew = true;
         candyLanded = false;
         body = GetComponent<Rigidbody>();
+        timer = 0;
     }
 
     // Update is called once per frame
@@ -24,6 +26,7 @@ public class Candy : MonoBehaviour
     {   
         if (Input.GetKeyUp("q") && candyCount > 0 && canthrownew){
             //var mousePos = Input.mousePosition;
+            timer = 0;
             candyLanded = false;
             canthrownew = false;
             candyCount -=1;
@@ -31,6 +34,12 @@ public class Candy : MonoBehaviour
             transform.rotation = Player.transform.rotation;
             transform.position = Player.transform.position+Player.transform.forward;
             body.velocity = forwards * 15.0f;
+        }
+        else{
+            timer += Time.deltaTime;
+        }
+        if(timer >= 3){ //Can throw new piece at LEAST every 3 seconds 
+            canthrownew = true;
         }
     }
 

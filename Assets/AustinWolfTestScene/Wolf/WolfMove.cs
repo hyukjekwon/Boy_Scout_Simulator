@@ -111,13 +111,6 @@ public class WolfMove : MonoBehaviour
                         if(Time.time-lastactiontime > 1.0f){
                             PlayBreath();
                         }
-                        // if (Physics.Raycast(dest.position, -Vector3.up, out hit)) { //Line straight down
-                        //     //Debug.DrawLine (dest.position, hit.point, Color.cyan);
-                        //     navMeshA.SetDestination(hit.point); //Set destination to the ground location of player
-                        // }
-                        // else{
-                        //     navMeshA.SetDestination(newDest); //If there is no ground beneath the player then set the destination to the players position
-                        // }
                         navMeshA.SetDestination(newDest);
                     }
                 }
@@ -150,17 +143,22 @@ public class WolfMove : MonoBehaviour
             navMeshA.isStopped = false;
             anim.SetInteger ("walk", 0);
             anim.SetInteger ("attack2", 0);
-            anim.SetInteger ("howl", 0);
             if(!(PieceOfCandy.GetComponent<Candy>().candyLanded || triggered)){
-                candyPosition = PieceOfCandy.transform.position;
+                NavMeshHit navhitpoint;
+                if (NavMesh.SamplePosition(PieceOfCandy.transform.position, out navhitpoint, 50.0f, NavMesh.AllAreas)){
+                    candyPosition = navhitpoint.position; 
+                }
+                else{
+                    candyPosition = PieceOfCandy.transform.position;
+                }
             }
             else{
                 triggered = true;
             }
             navMeshA.SetDestination(candyPosition);
+            navMeshA.CalculatePath(candyPosition, navMeshPath);
             //Debug.DrawLine (PieceOfCandy.transform.position, transform.position, Color.cyan);
-            if (Vector3.Distance(candyPosition, transform.position) <= 3){
-                //scaredAway = false;
+            if (Vector3.Distance(candyPosition, transform.position) <= 3.5 || !(navMeshPath.status == NavMeshPathStatus.PathComplete || navMeshA.hasPath && navMeshPath.status == NavMeshPathStatus.PathPartial)){
                 navMeshA.speed = 0.0f;
                 anim.SetInteger ("walk", 0);
                 anim.SetInteger ("run", 0);
@@ -168,15 +166,20 @@ public class WolfMove : MonoBehaviour
                 anim.SetInteger ("howl", 0);
                 anim.SetInteger ("eat", 1);
                 timer+=Time.deltaTime;
-                if(timer >= 20){
+                if(timer >= 300){
                     timer=0;
                     anim.SetInteger ("eat", 0);
+                    anim.SetInteger ("walk", 0);
+                    anim.SetInteger ("attack2", 0);
+                    anim.SetInteger ("howl", 0);
+                    anim.SetInteger ("run", 0);
                     scaredAway=false;
                 }
             }
             else{
                 anim.SetInteger ("run", 1);
                 navMeshA.speed = 15.0f;
+
             }
         }
     }
