@@ -24,6 +24,15 @@ public class UI_Management : MonoBehaviour
     private Vector3 PausePosition;
     private Vector3 SubPosition;
     private TextMeshProUGUI meatCounter;
+
+    private GameObject fpsController;
+    private FirstPersonMovement fpsScript;
+    private Jump jumpScript;
+    private Crouch crouchScript;
+    private GameInteractions interactionsScript;
+    private FirstPersonLook fpsLookScript;
+    private Zoom zoomScript;
+
     private float initSpeed;
     private float currSpeed;
     private float deccel;
@@ -43,9 +52,42 @@ public class UI_Management : MonoBehaviour
         }
     }
 
+    void Pause() {
+        fpsScript.enabled = false;
+        jumpScript.enabled = false;
+        crouchScript.enabled = false;
+        interactionsScript.enabled = false;
+        fpsLookScript.enabled = false;
+        zoomScript.enabled = false;
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0;
+    }
+
+    void Unpause() {
+        fpsScript.enabled = true;
+        jumpScript.enabled = true;
+        crouchScript.enabled = true;
+        interactionsScript.enabled = true;
+        fpsLookScript.enabled = true;
+        zoomScript.enabled = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        fpsController = GameObject.Find("First Person Controller");
+        fpsScript = fpsController.GetComponent<FirstPersonMovement>();
+        jumpScript = fpsController.GetComponent<Jump>();
+        crouchScript = fpsController.GetComponent<Crouch>();
+        interactionsScript = fpsController.GetComponent<GameInteractions>();
+
+        GameObject FirstPersonCamera = GameObject.Find("First Person Camera");
+        fpsLookScript = FirstPersonCamera.GetComponent<FirstPersonLook>();
+        zoomScript = FirstPersonCamera.GetComponent<Zoom>();
+        Pause();
+
         Click = GameObject.Find("click").GetComponent<AudioSource>();
         Scroll = GameObject.Find("scroll").GetComponent<AudioSource>();
 
@@ -53,7 +95,7 @@ public class UI_Management : MonoBehaviour
         meatCount = 5;
 
         HomeScreen = GameObject.Find("HomeScreen");
-        ToggleUIElement(HomeScreen);
+        HomeScreen.transform.localScale = Vector3.one;
         gameStarted = false;
         gamePaused = false;
 
@@ -64,6 +106,7 @@ public class UI_Management : MonoBehaviour
             PauseEmpty.transform.localScale = Vector3.zero;
             VolumeEmpty.transform.localScale = Vector3.zero;
             gameStarted = true;
+            Unpause();
         });
 
         PauseEmpty = GameObject.Find("PauseMenu");
@@ -123,17 +166,19 @@ public class UI_Management : MonoBehaviour
     {
         if (gameStarted) {
             if (PauseEmpty.transform.position.x < PausePosition.x) {            // Animate pause panel
-                PauseEmpty.transform.position += new Vector3(currSpeed, 0, 0) * Time.deltaTime;
+                PauseEmpty.transform.position += new Vector3(currSpeed, 0, 0) * Time.unscaledDeltaTime;
                 currSpeed = Mathf.Max(currSpeed - deccel, 50.0f);
             } else if (Input.GetKeyDown(KeyCode.Escape)) {                      // Toggle pause panel
                 if (PauseEmpty.transform.localScale.Equals(Vector3.zero)) {     // Pause
                     PauseEmpty.transform.position = PausePosition - new Vector3(450, 0, 0);
                     currSpeed = initSpeed;
                     gamePaused = true;
+                    Pause();
                 } else {                                                        // Unpause
                     VolumeEmpty.transform.localScale = Vector3.zero;
                     ControlsEmpty.transform.localScale = Vector3.zero;
                     gamePaused = false;
+                    Unpause();
                 }
                 ToggleUIElement(PauseEmpty);
             } else if (Input.GetKeyDown("q") && !gamePaused) {                  // If game unpaused and throw
