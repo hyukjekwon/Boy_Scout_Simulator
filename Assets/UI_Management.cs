@@ -20,6 +20,7 @@ public class UI_Management : MonoBehaviour
     private Slider MasterSlider;
     private AudioSource Click;
     private AudioSource Scroll;
+    private AudioSource Whoosh;
     private AudioSource stepAudio;
     private AudioSource runningAudio;
     private GameObject lastActive;
@@ -107,11 +108,8 @@ public class UI_Management : MonoBehaviour
         foreach (GameObject wolfObj in GameObject.FindGameObjectsWithTag("Wolf")) {
             sources.Add(wolfObj.GetComponent<AudioSource>());
         }
-        foreach (GameObject mamaObj in GameObject.FindGameObjectsWithTag("Mama")) {
-            sources.Add(mamaObj.GetComponent<AudioSource>());
-        }
-        foreach (GameObject dadObj in GameObject.FindGameObjectsWithTag("Dad")) {
-            sources.Add(dadObj.GetComponent<AudioSource>());
+        foreach (GameObject sfxObj in GameObject.FindGameObjectsWithTag("SFX")) {
+            sources.Add(sfxObj.GetComponent<AudioSource>());
         }
 
         GameObject FirstPersonCamera = GameObject.Find("First Person Camera");
@@ -125,6 +123,7 @@ public class UI_Management : MonoBehaviour
         meatCounter = GameObject.Find("MeatCounter").GetComponent<TextMeshProUGUI>();
         meatCount = 10;
         meatCounter.text = meatCount.ToString();
+        Whoosh = GameObject.Find("MeatCounter").GetComponent<AudioSource>();
 
         HomeScreen = GameObject.Find("HomeScreen");
         HomeScreen.transform.localScale = Vector3.one;

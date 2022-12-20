@@ -9,6 +9,7 @@ public class Candy : MonoBehaviour
     public GameObject candyclone;
     private Rigidbody body;
     private TextMeshProUGUI meatCount;
+    private AudioSource Whoosh;
     public bool candyLanded;
     bool canthrownew;
     public int candyCount = 10;
@@ -21,7 +22,9 @@ public class Candy : MonoBehaviour
         candyLanded = false;
         body = GetComponent<Rigidbody>();
         timer = 0;
-        meatCount = GameObject.Find("MeatCounter").GetComponent<TextMeshProUGUI>();
+        GameObject MeatCounter = GameObject.Find("MeatCounter");
+        meatCount = MeatCounter.GetComponent<TextMeshProUGUI>();
+        Whoosh = MeatCounter.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -38,6 +41,7 @@ public class Candy : MonoBehaviour
             transform.rotation = Player.transform.rotation;
             transform.position = Player.transform.position+Player.transform.forward;
             body.velocity = forwards * 15.0f;
+            Whoosh.Play();
         }
         else{
             timer += Time.deltaTime;

@@ -277,7 +277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6796223646289060717, guid: 72081044dc08d34449799ba1367aebdf, type: 3}
       propertyPath: m_TagString
-      value: Dad
+      value: SFX
       objectReference: {fileID: 0}
     - target: {fileID: 6845998253885770580, guid: 72081044dc08d34449799ba1367aebdf, type: 3}
       propertyPath: player
@@ -2196,6 +2196,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WolfController (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8485209353244919995, guid: 43310a487a27b544493cf76720ebf1ff, type: 3}
+      propertyPath: m_TagString
+      value: Wolf
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43310a487a27b544493cf76720ebf1ff, type: 3}
 --- !u!4 &251044251 stripped
@@ -3884,6 +3888,107 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2be9b4ffc291194c96942bd60bdc25c, type: 3}
+--- !u!1 &438856310 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5189073122110273507, guid: 3c706b3ffb8ee4c5ba015592a38ef831, type: 3}
+  m_PrefabInstance: {fileID: 725012292}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &438856314
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438856310}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: fce85762a532f4cb28d7593f7573f12d, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &442616517 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4000011048348644, guid: 84147b87204d0a0478bae9558d656ea2, type: 3}
@@ -6888,6 +6993,10 @@ PrefabInstance:
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 2800000, guid: 81ca8f600608849f9a7f94e18563da4e, type: 3}
+    - target: {fileID: 5189073122110273507, guid: 3c706b3ffb8ee4c5ba015592a38ef831, type: 3}
+      propertyPath: m_TagString
+      value: SFX
+      objectReference: {fileID: 0}
     - target: {fileID: 5189073122140613901, guid: 3c706b3ffb8ee4c5ba015592a38ef831, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -7392,7 +7501,7 @@ PrefabInstance:
       objectReference: {fileID: 545320780}
     - target: {fileID: 4990087964620891802, guid: dfef59ce7603c2e47b0ca17e5e228e95, type: 3}
       propertyPath: m_TagString
-      value: Cub
+      value: SFX
       objectReference: {fileID: 0}
     - target: {fileID: 4991172800503450692, guid: dfef59ce7603c2e47b0ca17e5e228e95, type: 3}
       propertyPath: m_RootOrder
@@ -7444,7 +7553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4992227770496523760, guid: dfef59ce7603c2e47b0ca17e5e228e95, type: 3}
       propertyPath: m_TagString
-      value: Mama
+      value: SFX
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfef59ce7603c2e47b0ca17e5e228e95, type: 3}
@@ -8298,11 +8407,11 @@ PrefabInstance:
       objectReference: {fileID: 545320780}
     - target: {fileID: 5135150144250246263, guid: 3b5425b8b2c18cf43a2344038e8782b2, type: 3}
       propertyPath: m_TagString
-      value: Cub
+      value: SFX
       objectReference: {fileID: 0}
     - target: {fileID: 5135258049446137629, guid: 3b5425b8b2c18cf43a2344038e8782b2, type: 3}
       propertyPath: m_TagString
-      value: Mama
+      value: SFX
       objectReference: {fileID: 0}
     - target: {fileID: 5136311937124228776, guid: 3b5425b8b2c18cf43a2344038e8782b2, type: 3}
       propertyPath: m_Name
@@ -18059,7 +18168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4573950932883504521, guid: a40f8ccd7dd1e2c44943e912215aa191, type: 3}
       propertyPath: m_TagString
-      value: Dad
+      value: SFX
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a40f8ccd7dd1e2c44943e912215aa191, type: 3}
