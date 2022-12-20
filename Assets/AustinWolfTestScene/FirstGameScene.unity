@@ -275,6 +275,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlackBear_Male
       objectReference: {fileID: 0}
+    - target: {fileID: 6796223646289060717, guid: 72081044dc08d34449799ba1367aebdf, type: 3}
+      propertyPath: m_TagString
+      value: Dad
+      objectReference: {fileID: 0}
     - target: {fileID: 6845998253885770580, guid: 72081044dc08d34449799ba1367aebdf, type: 3}
       propertyPath: player
       value: 
@@ -7386,6 +7390,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 545320780}
+    - target: {fileID: 4990087964620891802, guid: dfef59ce7603c2e47b0ca17e5e228e95, type: 3}
+      propertyPath: m_TagString
+      value: Cub
+      objectReference: {fileID: 0}
     - target: {fileID: 4991172800503450692, guid: dfef59ce7603c2e47b0ca17e5e228e95, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -7433,6 +7441,10 @@ PrefabInstance:
     - target: {fileID: 4991172800503450693, guid: dfef59ce7603c2e47b0ca17e5e228e95, type: 3}
       propertyPath: m_Name
       value: GrizzMamaAndCub
+      objectReference: {fileID: 0}
+    - target: {fileID: 4992227770496523760, guid: dfef59ce7603c2e47b0ca17e5e228e95, type: 3}
+      propertyPath: m_TagString
+      value: Mama
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfef59ce7603c2e47b0ca17e5e228e95, type: 3}
@@ -8284,6 +8296,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 545320780}
+    - target: {fileID: 5135150144250246263, guid: 3b5425b8b2c18cf43a2344038e8782b2, type: 3}
+      propertyPath: m_TagString
+      value: Cub
+      objectReference: {fileID: 0}
+    - target: {fileID: 5135258049446137629, guid: 3b5425b8b2c18cf43a2344038e8782b2, type: 3}
+      propertyPath: m_TagString
+      value: Mama
+      objectReference: {fileID: 0}
     - target: {fileID: 5136311937124228776, guid: 3b5425b8b2c18cf43a2344038e8782b2, type: 3}
       propertyPath: m_Name
       value: BlackBearMamaAndCub
@@ -18036,6 +18056,10 @@ PrefabInstance:
     - target: {fileID: 4573950932883504521, guid: a40f8ccd7dd1e2c44943e912215aa191, type: 3}
       propertyPath: m_Name
       value: Grizz_Male
+      objectReference: {fileID: 0}
+    - target: {fileID: 4573950932883504521, guid: a40f8ccd7dd1e2c44943e912215aa191, type: 3}
+      propertyPath: m_TagString
+      value: Dad
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a40f8ccd7dd1e2c44943e912215aa191, type: 3}

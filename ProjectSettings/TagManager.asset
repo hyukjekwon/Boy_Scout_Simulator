@@ -9,6 +9,9 @@ TagManager:
   - ControlsBtn
   - VolumeBtn
   - SFX
+  - Cub
+  - Mama
+  - Dad
   layers:
   - Default
   - TransparentFX

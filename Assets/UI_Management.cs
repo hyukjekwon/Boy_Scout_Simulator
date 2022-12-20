@@ -20,6 +20,8 @@ public class UI_Management : MonoBehaviour
     private Slider MasterSlider;
     private AudioSource Click;
     private AudioSource Scroll;
+    private AudioSource stepAudio;
+    private AudioSource runningAudio;
     private GameObject lastActive;
     private Vector3 PausePosition;
     private Vector3 SubPosition;
@@ -54,9 +56,8 @@ public class UI_Management : MonoBehaviour
     }
 
     void setSfxVolume(float value) {
-        foreach(AudioSource sound in sources) {
-            sound.volume = value;
-            // Debug.Log(sound);
+        foreach(AudioSource source in sources) {
+            source.volume = value;
         }
     }
 
@@ -69,6 +70,8 @@ public class UI_Management : MonoBehaviour
         zoomScript.enabled = false;
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0;
+        stepAudio.volume = 0;
+        runningAudio.volume = 0;
     }
 
     void Unpause() {
@@ -80,6 +83,8 @@ public class UI_Management : MonoBehaviour
         zoomScript.enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
         Time.timeScale = 1;
+        stepAudio.volume = SfxSlider.value;
+        runningAudio.volume = SfxSlider.value;
     }
 
     // Start is called before the first frame update
@@ -95,20 +100,31 @@ public class UI_Management : MonoBehaviour
         Scroll = GameObject.Find("scroll").GetComponent<AudioSource>();
         GameObject.Find("Step Audio").GetComponent<AudioSource>().volume = 0;
         sources = new List<AudioSource>();
-        foreach (GameObject soundObj in GameObject.FindGameObjectsWithTag("SFX")) {
-            sources.Add(soundObj.GetComponent<AudioSource>());
+
+        foreach (AudioSource source in GameObject.FindObjectsOfType(typeof(AudioSource)) as AudioSource[]) {
+            sources.Add(source);
         }
         foreach (GameObject wolfObj in GameObject.FindGameObjectsWithTag("Wolf")) {
             sources.Add(wolfObj.GetComponent<AudioSource>());
+        }
+        foreach (GameObject mamaObj in GameObject.FindGameObjectsWithTag("Mama")) {
+            sources.Add(mamaObj.GetComponent<AudioSource>());
+        }
+        foreach (GameObject dadObj in GameObject.FindGameObjectsWithTag("Dad")) {
+            sources.Add(dadObj.GetComponent<AudioSource>());
         }
 
         GameObject FirstPersonCamera = GameObject.Find("First Person Camera");
         fpsLookScript = FirstPersonCamera.GetComponent<FirstPersonLook>();
         zoomScript = FirstPersonCamera.GetComponent<Zoom>();
+
+        stepAudio = GameObject.Find("Step Audio").GetComponent<AudioSource>();
+        runningAudio = GameObject.Find("Running Audio").GetComponent<AudioSource>();
         Pause();
 
         meatCounter = GameObject.Find("MeatCounter").GetComponent<TextMeshProUGUI>();
-        meatCount = 5;
+        meatCount = 10;
+        meatCounter.text = meatCount.ToString();
 
         HomeScreen = GameObject.Find("HomeScreen");
         HomeScreen.transform.localScale = Vector3.one;
@@ -123,7 +139,6 @@ public class UI_Management : MonoBehaviour
             VolumeEmpty.transform.localScale = Vector3.zero;
             gameStarted = true;
             Unpause();
-            GameObject.Find("Step Audio").GetComponent<AudioSource>().volume = 1;
         });
 
         PauseEmpty = GameObject.Find("PauseMenu");
@@ -202,9 +217,6 @@ public class UI_Management : MonoBehaviour
                     Unpause();
                 }
                 ToggleUIElement(PauseEmpty);
-            } else if (Input.GetKeyDown("q") && !gamePaused) {                  // If game unpaused and throw
-                meatCount = Mathf.Max(0, meatCount - 1);
-                meatCounter.text = meatCount.ToString();
             }
         }
     }

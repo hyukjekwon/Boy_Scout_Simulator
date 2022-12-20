@@ -35,6 +35,7 @@ public class MamaBearMove : MonoBehaviour
         navMeshA = GetComponent<NavMeshAgent>();
         speed = navMeshA.speed;
         lastactiontime = Time.time;
+        source = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -159,7 +160,7 @@ public class MamaBearMove : MonoBehaviour
         lastactiontime = Time.time;
         if (Howls.Length > 0){
             AudioClip NextHowl = Howls[Random.Range(0, Howls.Length)];
-            AudioSource.PlayClipAtPoint(NextHowl, transform.position);
+            AudioSource.PlayClipAtPoint(NextHowl, transform.position, source.volume);
         }
         anim.SetInteger ("howl", 1);
     }
@@ -167,14 +168,14 @@ public class MamaBearMove : MonoBehaviour
         lastactiontime = Time.time;
         if (Growls.Length > 0){
             AudioClip NextGrowl = Growls[Random.Range(0, Growls.Length)];
-            AudioSource.PlayClipAtPoint(NextGrowl, transform.position);
+            AudioSource.PlayClipAtPoint(NextGrowl, transform.position, source.volume);
         }
     }
     void PlayBreath(){
         lastactiontime = Time.time;
         if (Breaths.Length > 0){
             AudioClip NextBreath = Breaths[Random.Range(0, Breaths.Length)];
-            AudioSource.PlayClipAtPoint(NextBreath, transform.position);
+            AudioSource.PlayClipAtPoint(NextBreath, transform.position, source.volume);
         }
     }
 }

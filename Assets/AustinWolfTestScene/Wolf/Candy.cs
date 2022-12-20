@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Candy : MonoBehaviour
 {
     public GameObject Player;
     public GameObject candyclone;
     private Rigidbody body;
+    private TextMeshProUGUI meatCount;
     public bool candyLanded;
     bool canthrownew;
     public int candyCount = 10;
@@ -19,6 +21,7 @@ public class Candy : MonoBehaviour
         candyLanded = false;
         body = GetComponent<Rigidbody>();
         timer = 0;
+        meatCount = GameObject.Find("MeatCounter").GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -30,6 +33,7 @@ public class Candy : MonoBehaviour
             candyLanded = false;
             canthrownew = false;
             candyCount -=1;
+            meatCount.text = candyCount.ToString();
             Vector3 forwards = Player.transform.forward;
             transform.rotation = Player.transform.rotation;
             transform.position = Player.transform.position+Player.transform.forward;
