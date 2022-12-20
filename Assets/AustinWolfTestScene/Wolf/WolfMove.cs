@@ -42,6 +42,7 @@ public class WolfMove : MonoBehaviour
         lastactiontime = Time.time;
         timer=0;
         triggered = false;
+        source = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
