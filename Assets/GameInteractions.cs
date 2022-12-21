@@ -49,14 +49,14 @@ public class GameInteractions : MonoBehaviour
         notesText.Add(6, "You win!");
 
         pressEtext.SetActive(false);
-
         notes.GetComponent<TMPro.TextMeshPro>().SetText(notesText[objectiveToFind]);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        objectiveToFind = CheckpointManager.gameprogress;
+        notes.GetComponent<TMPro.TextMeshPro>().SetText(notesText[objectiveToFind]);
         // If player is near an objective, he can press e to listen to the next radio commands, and then update the objective.
         pressEtext.SetActive(true);
         if (Vector3.Distance(transform.position, objective_intro.transform.position) < 2 && objectiveToFind == -1){
