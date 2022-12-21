@@ -17,6 +17,28 @@
 ### Hyuk-Je Kwon
 - UI_Management.cs 90%
 
+### Austin Bushey
+- CheckpointManager.cs 100% - Connected checkpoints to the UI
+- Candy.cs 100% - Throws food on the ground to distract the wolves
+- SlopeRotation.cs 100% - Matches the wolf's rotation to the slope of the ground
+- WolfMove.cs 100% - AI For the wolf
+- BearMove.cs 100% - AI For the grizzly bear
+- BlackBearMove.cs 100% - AI For the black bear
+- CubMove.cs 100% - AI For the cub's
+- MamaBearMove.cs 100% - AI For the Mama bear's
+- BearSlope.cs 100% - Matches the bears's rotation to the slope of the ground
+
+## Game AI
+- General idea is that if the player is within stalking distance or there is an unobstructed line of sight then the wolf or grizzly/black bear will walk towards the player at 5.0f speed.
+- If the wolf or grizzly/black bear is within hearing distance of the player then it will then run towards the player at 15.0f speed.
+- Otherwise they stay still and howl or roar. The wolf can be distracted while they're running at you by throwing meat on the ground.
+- The grizzly bear will ignore you or run away if you stay still for at least a second while it's tracking you.
+- The black bear can be scared away if you yell at it.
+- The mama bear and cub act different than the other types of bears. The cub will wander around randomly and the mama will follow it around and protect it.
+- If the players walks within the protecting distance of the cub, the mama will attack until the player leaves.
+- Additionally, all the animals have a rotation script to rotate their mesh along the slope of the ground to make it look realistic.
+- All movement paths are calculated using a navmesh.
+
 ## Sound Effects
 - Player
     - Walking/Running:
@@ -64,6 +86,11 @@ This is the final section, where players need to do both at the same time
 - [Realistic Tree Pack Vol.1](https://assetstore.unity.com/packages/3d/vegetation/trees/realistic-tree-pack-vol-1-50418)
 - [Terrain Asset Sample Pack](https://assetstore.unity.com/packages/3d/environments/landscapes/terrain-sample-asset-pack-145808)
 - [Mini First Person Controller](https://assetstore.unity.com/packages/tools/input-management/mini-first-person-controller-174710)
+- [Wolf Asset: Only the mesh and animations](https://assetstore.unity.com/packages/3d/characters/animals/wolf-animated-45505)
+- [Bear Asset: Only animations](https://assetstore.unity.com/packages/3d/characters/animals/free-stylized-bear-rpg-forest-animal-228910)
+- [RPG Food pack:](https://assetstore.unity.com/packages/3d/props/food/rpg-food-drinks-pack-121067)
+- Consumer.cs - From asset store
+- Rotator.cs - From asset store
 
 ## ALL VOICE ACTING - JARED STARMAN
 
