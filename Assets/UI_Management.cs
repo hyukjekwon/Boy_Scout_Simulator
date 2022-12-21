@@ -15,7 +15,9 @@ public class UI_Management : MonoBehaviour
     private Button KeyBindsBtn;
     private Button VolumeBtn;
     private Button RestartBtn;
+    //Checkpoint button
     private Button TryAgainBtn;
+    private GameObject gameover;
     private Slider SfxSlider;
     private Slider MusicSlider;
     private Slider MasterSlider;
@@ -64,7 +66,17 @@ public class UI_Management : MonoBehaviour
         }
     }
 
-    void Pause() {
+    public void PausePlayer() {
+        fpsScript.enabled = false;
+        jumpScript.enabled = false;
+        crouchScript.enabled = false;
+        interactionsScript.enabled = false;
+        fpsLookScript.enabled = false;
+        zoomScript.enabled = false;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void Pause() {
         fpsScript.enabled = false;
         jumpScript.enabled = false;
         crouchScript.enabled = false;
@@ -75,9 +87,10 @@ public class UI_Management : MonoBehaviour
         Time.timeScale = 0;
         stepAudio.volume = 0;
         runningAudio.volume = 0;
+        fpsController.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 
-    void Unpause() {
+    public void Unpause() {
         fpsScript.enabled = true;
         jumpScript.enabled = true;
         crouchScript.enabled = true;
@@ -93,6 +106,7 @@ public class UI_Management : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameover = GameObject.Find("GameOver"); 
         fpsController = GameObject.Find("First Person Controller");
         fpsScript = fpsController.GetComponent<FirstPersonMovement>();
         jumpScript = fpsController.GetComponent<Jump>();
@@ -144,11 +158,12 @@ public class UI_Management : MonoBehaviour
             Unpause();
         });
 
-        // THIS IS THE BUTTON ON THE GAME OVER SCREEN
+        // THESE ARE THE BUTTONS ON THE GAME OVER SCREEN
+        //Spawnpos: fpsController.transform.position = new Vector3(437.79f, 11.72f, 357.79f);
+        //Checkpoint1: fpsController.transform.position = new Vector3(561f, 41.4f, 934.736f);
         TryAgainBtn = GameObject.Find("TryAgainBtn").GetComponent<Button>();
         TryAgainBtn.onClick.AddListener(() => {
             Click.Play();
-            // TODO: Currently resets all progress, but should reset to checkpoint later
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         });
 

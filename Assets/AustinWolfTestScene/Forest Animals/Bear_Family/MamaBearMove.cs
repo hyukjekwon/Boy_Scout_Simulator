@@ -26,13 +26,18 @@ public class MamaBearMove : MonoBehaviour
     public float attackdistance = 4.5f; 
     private float lastactiontime;
     public float wanderRadius;
+    private float gameovertimer;
     private Vector3 newDest;
+    private GameObject UImanager;
+    private GameObject GameOver;
     // Start is called before the first frame update
     void Start()
     {
+        GameOver = GameObject.Find("GameOver");
         dest = player.transform;
         anim = GetComponent<Animator>();
         navMeshA = GetComponent<NavMeshAgent>();
+        UImanager = GameObject.Find("EventSystem");
         speed = navMeshA.speed;
         lastactiontime = Time.time;
         source = gameObject.GetComponent<AudioSource>();
@@ -86,8 +91,17 @@ public class MamaBearMove : MonoBehaviour
                         if(Time.time-lastactiontime > Random.Range(2.0f, 3.0f)){ 
                             PlayGrowl();
                         }
+                         //Game over
+                        UImanager.GetComponent<UI_Management>().PausePlayer();
+                        if(Time.time - gameovertimer >= 1 && Time.time - gameovertimer < 5){
+                            GameOver.transform.localScale = Vector3.one;
+                        }
+                        if(Time.time - gameovertimer >= 5){
+                            UImanager.GetComponent<UI_Management>().Pause();
+                        }
                     }
                     else{ //Within hearing distance
+                        gameovertimer = Time.time;
                         anim.SetInteger ("run", 1);
                         anim.SetInteger ("attack2", 0);
                         navMeshA.speed = 15.0f;
@@ -106,6 +120,7 @@ public class MamaBearMove : MonoBehaviour
                     }
                 }
                 else{ //Only within seeing distance
+                    gameovertimer = Time.time;
                     anim.SetInteger ("walk", 1);
                     anim.SetInteger ("run", 0);
                     navMeshA.speed = 5.0f;

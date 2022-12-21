@@ -28,16 +28,21 @@ public class BearMove : MonoBehaviour
     private float lastactiontime;
     private bool scaredAway;
     private float timer;
+    private float gameovertimer;
     private Vector3 newDest;
+    private GameObject UImanager;
+    private GameObject GameOver;
     // Start is called before the first frame update
     void Start()
     {
+        GameOver = GameObject.Find("GameOver");
         scaredAway = false;
         StartPos = transform.position;
         runAwayPos = StartPos;
         dest = player.transform;
         anim = GetComponent<Animator>();
         navMeshA = GetComponent<NavMeshAgent>();
+        UImanager = GameObject.Find("EventSystem");
         source = gameObject.GetComponent<AudioSource>();
         speed = navMeshA.speed;
         lastactiontime = Time.time;
@@ -95,8 +100,17 @@ public class BearMove : MonoBehaviour
                         if(Time.time-lastactiontime > Random.Range(3.0f, 5.0f)){ 
                             PlayGrowl();
                         }
+                        //Game over
+                        UImanager.GetComponent<UI_Management>().PausePlayer();
+                        if(Time.time - gameovertimer >= 1 && Time.time - gameovertimer < 5){
+                            GameOver.transform.localScale = Vector3.one;
+                        }
+                        if(Time.time - gameovertimer >= 5){
+                            UImanager.GetComponent<UI_Management>().Pause();
+                        }
                     }
                     else{ //Within hearing distance
+                        gameovertimer = Time.time;
                         anim.SetInteger ("run", 1);
                         anim.SetInteger ("attack2", 0);
                         navMeshA.speed = 15.0f;
@@ -135,6 +149,7 @@ public class BearMove : MonoBehaviour
                     }
                 }
                 else{ //Only within seeing distance
+                    gameovertimer = Time.time;
                     //Test to see if player moved
                     if (Vector3.Distance(LastPos, player.transform.position) <= 0.01f){
                         timer+=Time.deltaTime;

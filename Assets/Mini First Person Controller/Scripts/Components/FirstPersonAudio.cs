@@ -39,9 +39,11 @@ public class FirstPersonAudio : MonoBehaviour
     public AudioSource paceStep2;
 
     public AudioSource yell;
+    private float yelltimer;
 
 
     void Start(){
+        yelltimer = Time.time;
         pacingTime = Time.time;
     }
 
@@ -75,6 +77,14 @@ public class FirstPersonAudio : MonoBehaviour
 
     void OnDisable() => UnsubscribeToEvents();
 
+    void Update(){
+        if (Time.time - yelltimer >= 2.5){
+            if(Input.GetKeyDown("r")) {
+                yell.Play();
+                yelltimer = Time.time;
+            }
+        }
+    }
     void FixedUpdate()
     {
         // Play moving audio if the character is moving and on the ground.
@@ -110,10 +120,6 @@ public class FirstPersonAudio : MonoBehaviour
 
         // Remember lastCharacterPosition.
         lastCharacterPosition = CurrentCharacterPosition;
-
-        if(Input.GetKeyDown("r")) {
-            SetPlayingMovingAudio(yell);
-        }
     }
 
 

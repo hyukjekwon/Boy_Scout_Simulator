@@ -30,14 +30,20 @@ public class WolfMove : MonoBehaviour
     private bool scaredAway;
     private float timer;
     private bool triggered;
+    private float gameovertimer;
+    private GameObject UImanager;
+    private GameObject GameOver;
     // Start is called before the first frame update
     void Start()
     {
+        GameOver = GameObject.Find("GameOver");
+        gameovertimer = Time.time;
         scaredAway = false;
         StartPos = transform.position;
         dest = player.transform;
         anim = GetComponent<Animator>();
         navMeshA = GetComponent<NavMeshAgent>();
+        UImanager = GameObject.Find("EventSystem");
         speed = navMeshA.speed;
         lastactiontime = Time.time;
         timer=0;
@@ -84,12 +90,6 @@ public class WolfMove : MonoBehaviour
             //Player must have "Player" tag for this to work
             if ((((Vector3.Angle(dest.position - transform.position, transform.forward) <= fieldofview && Vector3.Distance(dest.position, transform.position) <= 150 && doesHitplayer) || Vector3.Distance(dest.position, transform.position) <= stalkingdistance) || Vector3.Distance(dest.position, transform.position) <= hearingdistance && Time.time-lastactiontime > 3) && !(anim.GetCurrentAnimatorStateInfo(0).IsName("howl") || anim.GetAnimatorTransitionInfo(0).IsName("breathes -> howl") || anim.GetAnimatorTransitionInfo(0).IsName("howl -> breathes")) && DoesPathExist){ 
                 //If wolf is within hearing distance of player
-                //Test to see if player yells
-                if (PieceOfCandy.GetComponent<Candy>().candyCount > 0){
-                    if(Input.GetKeyUp("q")){ 
-                        scaredAway = true;
-                    }
-                }
                 if (Vector3.Distance(dest.position, transform.position) <= hearingdistance) {
                     //If wolf is within attacking distance of player
                     if(Vector3.Distance(dest.position, transform.position) <= attackdistance){
@@ -102,8 +102,17 @@ public class WolfMove : MonoBehaviour
                         if(Time.time-lastactiontime > Random.Range(1.0f, 3.0f)){ 
                             PlayGrowl();
                         }
+                         //Game over
+                        UImanager.GetComponent<UI_Management>().PausePlayer();
+                        if(Time.time - gameovertimer >= 1 && Time.time - gameovertimer < 5){
+                            GameOver.transform.localScale = Vector3.one;
+                        }
+                        if(Time.time - gameovertimer >= 5){
+                            UImanager.GetComponent<UI_Management>().Pause();
+                        }
                     }
                     else{ //Within hearing distance
+                        gameovertimer = Time.time;
                         anim.SetInteger ("run", 1);
                         anim.SetInteger ("attack2", 0);
                         navMeshA.speed = 15.0f;
@@ -113,9 +122,16 @@ public class WolfMove : MonoBehaviour
                             PlayBreath();
                         }
                         navMeshA.SetDestination(newDest);
+                        //Test to see if player yells
+                        if (PieceOfCandy.GetComponent<Candy>().candyCount > 0){
+                            if(Input.GetKeyUp("q")){ 
+                                scaredAway = true;
+                            }
+                        }
                     }
                 }
                 else{ //Only within seeing distance
+                    gameovertimer = Time.time;
                     anim.SetInteger ("walk", 1);
                     anim.SetInteger ("run", 0);
                     navMeshA.speed = 5.0f;
