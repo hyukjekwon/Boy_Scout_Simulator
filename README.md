@@ -35,10 +35,10 @@
 ## MAP - Jared Starman
 ### MAP ORGANIZATION
 The Map is divided into 4 sections
-####-Tutorial
-This section Is where the player starts. They learn the basics of orineteering, with lightposts teaching them how to do it properly
+#### Tile 1
+This section is where the player starts. They learn the basics of orineteering, with lightposts teaching them how to do it properly
 
-####Tile 2 - Forest
+#### Tile 2 - Forest
 This section is for the players to do the orienteering between three objectives. They interact with radios to update their instructions
 
 #### Tile 3 - Airport
