@@ -38,6 +38,8 @@ public class FirstPersonAudio : MonoBehaviour
     public AudioSource paceStep1;
     public AudioSource paceStep2;
 
+    public AudioSource yell;
+
 
     void Start(){
         pacingTime = Time.time;
@@ -108,6 +110,10 @@ public class FirstPersonAudio : MonoBehaviour
 
         // Remember lastCharacterPosition.
         lastCharacterPosition = CurrentCharacterPosition;
+
+        if(Input.GetKeyDown("e")) {
+            SetPlayingMovingAudio(yell);
+        }
     }
 
 
