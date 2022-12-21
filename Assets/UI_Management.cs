@@ -20,6 +20,7 @@ public class UI_Management : MonoBehaviour
     private Button TryAgainBtnCheckpoint1;
     private Button TryAgainBtnCheckpoint2;
     private Button TryAgainBtnCheckpoint3;
+    private Button TryAgainBtnCheckpoint4;
     ///////////////////////////
     private GameObject spawnblock;
     private GameObject gameover;
@@ -185,12 +186,20 @@ public class UI_Management : MonoBehaviour
         TryAgainBtnCheckpoint2 = GameObject.Find("TryAgainBtn2").GetComponent<Button>();
         TryAgainBtnCheckpoint2.onClick.AddListener(() => {
             Click.Play();
+            spawnblock.transform.position = new Vector3(188.5f, 21.72f, 1089.64f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         });
         
         TryAgainBtnCheckpoint3 = GameObject.Find("TryAgainBtn3").GetComponent<Button>();
         TryAgainBtnCheckpoint3.onClick.AddListener(() => {
             Click.Play();
+            spawnblock.transform.position = new Vector3(415.6f, 7.4f, 1608.3f);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        });
+        TryAgainBtnCheckpoint4 = GameObject.Find("TryAgainBtn4").GetComponent<Button>();
+        TryAgainBtnCheckpoint4.onClick.AddListener(() => {
+            Click.Play();
+            spawnblock.transform.position = new Vector3(805.28f, 3.22f, 1804.7f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         });
         ////////////////////////////////////////////////////////////////////////////////////////
@@ -223,6 +232,7 @@ public class UI_Management : MonoBehaviour
         RestartBtn = GameObject.Find("Restart").GetComponent<Button>();
         RestartBtn.GetComponent<Button>().onClick.AddListener(() => {
             Click.Play();
+            spawnblock.transform.position = new Vector3(437.79f, 11.72f, 357.79f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         });
 
@@ -273,6 +283,12 @@ public class UI_Management : MonoBehaviour
         }
         else{
             TryAgainBtnCheckpoint3.gameObject.SetActive(true);
+        }
+        if (!(GameProgression >= 4)){
+            TryAgainBtnCheckpoint4.gameObject.SetActive(false);
+        }
+        else{
+            TryAgainBtnCheckpoint4.gameObject.SetActive(true);
         }
         ////////////////////////////////////////////////////////////////////////////////////////////
         if (gameStarted) {
