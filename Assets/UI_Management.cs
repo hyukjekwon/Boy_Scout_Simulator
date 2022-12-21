@@ -25,7 +25,7 @@ public class UI_Management : MonoBehaviour
     private GameObject spawnblock;
     private GameObject gameover;
     private Slider SfxSlider;
-    private Slider MusicSlider;
+    private Slider DialogueSlider;
     private Slider MasterSlider;
     private AudioSource Click;
     private AudioSource Scroll;
@@ -38,6 +38,7 @@ public class UI_Management : MonoBehaviour
     private Vector3 SubPosition;
     private TextMeshProUGUI meatCounter;
     private List<AudioSource> sources;
+    private List<AudioSource> dialogueSources;
 
     private GameObject fpsController;
     private FirstPersonMovement fpsScript;
@@ -69,6 +70,13 @@ public class UI_Management : MonoBehaviour
     void setSfxVolume(float value) {
         foreach(AudioSource source in sources) {
             source.volume = value;
+        }
+    }
+
+    void setDialogueVolume(float value) {
+        foreach(AudioSource source in dialogueSources) {
+            source.volume = value;
+
         }
     }
 
@@ -127,6 +135,7 @@ public class UI_Management : MonoBehaviour
         GameObject.Find("Step Audio").GetComponent<AudioSource>().volume = 0;
         sources = new List<AudioSource>();
 
+        dialogueSources = new List<AudioSource>();
         foreach (AudioSource source in GameObject.FindObjectsOfType(typeof(AudioSource)) as AudioSource[]) {
             sources.Add(source);
         }
@@ -135,6 +144,9 @@ public class UI_Management : MonoBehaviour
         }
         foreach (GameObject sfxObj in GameObject.FindGameObjectsWithTag("SFX")) {
             sources.Add(sfxObj.GetComponent<AudioSource>());
+        }
+        foreach (GameObject diaObj in GameObject.FindGameObjectsWithTag("Dialogue")) {
+            dialogueSources.Add(diaObj.GetComponent<AudioSource>());
         }
 
         GameObject FirstPersonCamera = GameObject.Find("First Person Camera");
@@ -243,11 +255,12 @@ public class UI_Management : MonoBehaviour
             }
             setSfxVolume(value);
         });
-        MusicSlider = GameObject.Find("MusicSlider").GetComponent<Slider>();
-        MusicSlider.onValueChanged.AddListener((float value) => {
+        DialogueSlider = GameObject.Find("DialogueSlider").GetComponent<Slider>();
+        DialogueSlider.onValueChanged.AddListener((float value) => {
             if (!Scroll.isPlaying) {
                 Scroll.Play();
             }
+            setDialogueVolume(value);
         });
         MasterSlider = GameObject.Find("MasterSlider").GetComponent<Slider>();
         MasterSlider.onValueChanged.AddListener((float value) => {

@@ -12,6 +12,7 @@ TagManager:
   - Cub
   - Mama
   - Dad
+  - Dialogue
   layers:
   - Default
   - TransparentFX
