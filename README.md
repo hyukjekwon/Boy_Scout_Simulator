@@ -5,6 +5,15 @@
 - Jared: Terrain and map design, scoutmaster voiceover/scripting
 - Hyuk-Je: Sounds, walkie talkie, UI, game logic, sketches, misc
 
+## Scripts Worked On
+### Brandon Halig
+- GameInteractions.cs 100%
+    - Keeps track of player's orienteering objectives, plays radio commands, updates the player's notes list
+- ArrowDirection.cs 100%
+    - Points the compass in the North direction
+- FirstPersonAudio.cs 10%
+    - Added functionality for pacing footsteps
+
 ## Sound Effects
 - Environment
     - [Forest](https://www.youtube.com/watch?v=VxrH8mUWyGc)
@@ -28,3 +37,20 @@
 - UI
     - [Click](https://www.youtube.com/watch?v=vzfqwCu2hi4)
     - Scroll when moving sliders (just click but repeating when the value changes)
+## MAP - Jared Starman
+### Unity Assets Cited (all modified with collision assets)
+- [MILITARY VEHICLE](https://assetstore.unity.com/packages/3d/vehicles/land/military-vehicle-9225)
+- [GAZ 66](https://assetstore.unity.com/publishers/2837)
+- [Military Truck PBR](https://assetstore.unity.com/packages/3d/vehicles/land/military-truck-pbr-41450)
+- [M3A1 Scout Car](https://assetstore.unity.com/packages/3d/vehicles/land/m3a1-scout-car-53149)
+- [Old Hangar](https://assetstore.unity.com/packages/3d/environments/historic/old-hangar-119037)
+- [Super Spitfire](https://assetstore.unity.com/packages/3d/vehicles/air/super-spitfire-53217)
+- [Crashed Boeing c-17](https://assetstore.unity.com/packages/3d/environments/industrial/crashed-boeing-c-17-globemaster-iii-133633)
+- [Small Town America](https://assetstore.unity.com/packages/3d/small-town-america-streets-free-59759)
+- [RPG/FPS Game Assets for PC/Mobile (Industrial Set v2.0)](https://assetstore.unity.com/packages/3d/environments/industrial/rpg-fps-game-assets-for-pc-mobile-industrial-set-v2-0-86679)
+- [Swamp Bridge](https://assetstore.unity.com/packages/3d/props/exterior/swamp-bridge-71515)
+- [Towers PBR Pack](https://assetstore.unity.com/packages/3d/environments/towers-pbr-pack-95705)
+- [Tents](https://assetstore.unity.com/packages/3d/environments/towers-pbr-pack-95705)
+- [Secret Radio Room - The Swamp House](https://assetstore.unity.com/packages/3d/environments/secret-radio-room-the-swamp-house-155339)
+- [Realistic Tree Pack Vol.1](https://assetstore.unity.com/packages/3d/vegetation/trees/realistic-tree-pack-vol-1-50418)
+- [Terrain Asset Sample Pack](https://assetstore.unity.com/packages/3d/environments/landscapes/terrain-sample-asset-pack-145808)
