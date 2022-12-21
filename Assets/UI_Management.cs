@@ -136,6 +136,7 @@ public class UI_Management : MonoBehaviour
             HomeScreen.transform.localScale = Vector3.zero;
             PauseEmpty.transform.localScale = Vector3.zero;
             VolumeEmpty.transform.localScale = Vector3.zero;
+            ControlsEmpty.transform.localScale = Vector3.zero;
             gameStarted = true;
             Unpause();
         });
