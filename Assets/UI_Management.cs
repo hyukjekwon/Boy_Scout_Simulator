@@ -15,12 +15,14 @@ public class UI_Management : MonoBehaviour
     private Button KeyBindsBtn;
     private Button VolumeBtn;
     private Button RestartBtn;
+    private Button TryAgainBtn;
     private Slider SfxSlider;
     private Slider MusicSlider;
     private Slider MasterSlider;
     private AudioSource Click;
     private AudioSource Scroll;
     private AudioSource Whoosh;
+    private AudioSource Fail;
     private AudioSource stepAudio;
     private AudioSource runningAudio;
     private GameObject lastActive;
@@ -99,6 +101,7 @@ public class UI_Management : MonoBehaviour
 
         Click = GameObject.Find("click").GetComponent<AudioSource>();
         Scroll = GameObject.Find("scroll").GetComponent<AudioSource>();
+        Fail = GameObject.Find("GameOver").GetComponent<AudioSource>();
         GameObject.Find("Step Audio").GetComponent<AudioSource>().volume = 0;
         sources = new List<AudioSource>();
 
@@ -139,6 +142,14 @@ public class UI_Management : MonoBehaviour
             ControlsEmpty.transform.localScale = Vector3.zero;
             gameStarted = true;
             Unpause();
+        });
+
+        // THIS IS THE BUTTON ON THE GAME OVER SCREEN
+        TryAgainBtn = GameObject.Find("TryAgainBtn").GetComponent<Button>();
+        TryAgainBtn.onClick.AddListener(() => {
+            Click.Play();
+            // TODO: Currently resets all progress, but should reset to checkpoint later
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         });
 
         PauseEmpty = GameObject.Find("PauseMenu");

@@ -111,7 +111,7 @@ public class FirstPersonAudio : MonoBehaviour
         // Remember lastCharacterPosition.
         lastCharacterPosition = CurrentCharacterPosition;
 
-        if(Input.GetKeyDown("e")) {
+        if(Input.GetKeyDown("r")) {
             SetPlayingMovingAudio(yell);
         }
     }

@@ -4921,6 +4921,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOver
       objectReference: {fileID: 0}
+    - target: {fileID: 5115138542366723215, guid: c43ef01fcc5a2451ca254d32ceb9336b, type: 3}
+      propertyPath: m_TagString
+      value: SFX
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c43ef01fcc5a2451ca254d32ceb9336b, type: 3}
 --- !u!1001 &521495282
