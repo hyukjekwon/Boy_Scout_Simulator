@@ -65,5 +65,5 @@ This is the final section, where playuers need to do both at the same time
 - [Terrain Asset Sample Pack](https://assetstore.unity.com/packages/3d/environments/landscapes/terrain-sample-asset-pack-145808)
 - [Mini First Person Controller](https://assetstore.unity.com/packages/tools/input-management/mini-first-person-controller-174710)
 
-##ALL VOICE ACTING - JARED STARMAN
+## ALL VOICE ACTING - JARED STARMAN
 
