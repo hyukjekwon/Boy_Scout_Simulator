@@ -68,6 +68,7 @@ This is the final section, where playuers need to do both at the same time
 - [Secret Radio Room - The Swamp House](https://assetstore.unity.com/packages/3d/environments/secret-radio-room-the-swamp-house-155339)
 - [Realistic Tree Pack Vol.1](https://assetstore.unity.com/packages/3d/vegetation/trees/realistic-tree-pack-vol-1-50418)
 - [Terrain Asset Sample Pack](https://assetstore.unity.com/packages/3d/environments/landscapes/terrain-sample-asset-pack-145808)
+- [Mini First Person Controller](https://assetstore.unity.com/packages/tools/input-management/mini-first-person-controller-174710)
 
 ##ALL VOICE ACTING - JARED STARMAN
 
