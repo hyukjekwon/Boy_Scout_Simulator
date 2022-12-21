@@ -163,6 +163,7 @@ public class UI_Management : MonoBehaviour
             ControlsEmpty.transform.localScale = Vector3.zero;
             gameStarted = true;
             Unpause();
+            GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
         });
 
         // THESE ARE THE BUTTONS ON THE GAME OVER SCREEN
