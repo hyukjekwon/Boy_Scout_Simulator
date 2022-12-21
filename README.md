@@ -45,7 +45,7 @@ This section is for the players to do the orienteering between three objectives.
 In this section, players must press each of the 4 objectives (the trucks in the hangars and the plane). They also learn how to deal with the three times of animals
 
 ### Tile 4 - Mountain
-This is the final section, where playuers need to do both at the same time
+This is the final section, where players need to do both at the same time
 
 ### Unity Assets Cited (all modified with collision assets)
 - [MILITARY VEHICLE](https://assetstore.unity.com/packages/3d/vehicles/land/military-vehicle-9225)
