@@ -38,6 +38,20 @@
     - [Click](https://www.youtube.com/watch?v=vzfqwCu2hi4)
     - Scroll when moving sliders (just click but repeating when the value changes)
 ## MAP - Jared Starman
+### MAP ORGANIZATION
+The Map is divided into 4 sections
+####-Tutorial
+This section Is where the player starts. They learn the basics of orineteering, with lightposts teaching them how to do it properly
+
+####-Tile 2 - Forest
+This section is for the players to do the orienteering between three objectives. They interact with radios to update their instructions
+
+#### Tile 3 - Airport
+In this section, players must press each of the 4 objectives (the trucks in the hangars and the plane). They also learn how to deal with the three times of animals
+
+### Tile 4 - Mountain
+This is the final section, where playuers need to do both at the same time
+
 ### Unity Assets Cited (all modified with collision assets)
 - [MILITARY VEHICLE](https://assetstore.unity.com/packages/3d/vehicles/land/military-vehicle-9225)
 - [GAZ 66](https://assetstore.unity.com/publishers/2837)
