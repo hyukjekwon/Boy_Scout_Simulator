@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571336, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -25324,6 +25324,14 @@ PrefabInstance:
     - target: {fileID: 2686705119895309336, guid: 582fbb7fe2821124d8533eab1156cbfe, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2686705120014418533, guid: 582fbb7fe2821124d8533eab1156cbfe, type: 3}
+      propertyPath: m_Name
+      value: ThrowMeat
+      objectReference: {fileID: 0}
+    - target: {fileID: 2686705120014418539, guid: 582fbb7fe2821124d8533eab1156cbfe, type: 3}
+      propertyPath: m_text
+      value: Throw Meat
       objectReference: {fileID: 0}
     - target: {fileID: 2686705120084510341, guid: 582fbb7fe2821124d8533eab1156cbfe, type: 3}
       propertyPath: m_AnchorMax.x
