@@ -44,7 +44,7 @@ This section is for the players to do the orienteering between three objectives.
 #### Tile 3 - Airport
 In this section, players must press each of the 4 objectives (the trucks in the hangars and the plane). They also learn how to deal with the three times of animals
 
-### Tile 4 - Mountain
+#### Tile 4 - Mountain
 This is the final section, where players need to do both at the same time
 
 ### Unity Assets Cited (all modified with collision assets)
