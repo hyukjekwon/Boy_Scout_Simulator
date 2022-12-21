@@ -32,6 +32,10 @@ public class BearMove : MonoBehaviour
     private Vector3 newDest;
     private GameObject UImanager;
     private GameObject GameOver;
+    private GameObject characterSpotted;
+    private bool beingspotted;
+    private bool isstuck;
+    private float stucktimer;
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +52,10 @@ public class BearMove : MonoBehaviour
         lastactiontime = Time.time;
         timer = 0;
         LastPos = player.transform.position;
+        characterSpotted = GameObject.Find("AnimalLockOnText");
+        beingspotted = false;
+        isstuck = false;
+        stucktimer = Time.time;
     }
 
     // Update is called once per frame
@@ -60,6 +68,8 @@ public class BearMove : MonoBehaviour
         Bear can be scared away staying still
         */
         if (!(scaredAway)){
+            isstuck = false;
+            stucktimer = Time.time;
             if (Physics.Raycast(dest.position, -Vector3.up, out hit)) { //Line straight down
                 newDest = hit.point;
             }
@@ -88,6 +98,9 @@ public class BearMove : MonoBehaviour
             //Player must have "Player" tag for this to work
             if ((((Vector3.Angle(dest.position - transform.position, transform.forward) <= fieldofview && Vector3.Distance(dest.position, transform.position) <= 150 && doesHitplayer) || Vector3.Distance(dest.position, transform.position) <= stalkingdistance) || Vector3.Distance(dest.position, transform.position) <= hearingdistance && Time.time-lastactiontime > 3) && !(anim.GetCurrentAnimatorStateInfo(0).IsName("howl") || anim.GetAnimatorTransitionInfo(0).IsName("breathes -> howl") || anim.GetAnimatorTransitionInfo(0).IsName("howl -> breathes")) && DoesPathExist){ 
                 //If bear is within hearing distance of player
+                characterSpotted.SetActive(true);
+                characterSpotted.transform.localScale = Vector3.one;
+                beingspotted = true;
                 if (Vector3.Distance(dest.position, transform.position) <= hearingdistance) {
                     //If bear is within attacking distance of player
                     if(Vector3.Distance(dest.position, transform.position) <= attackdistance){
@@ -185,6 +198,10 @@ public class BearMove : MonoBehaviour
             }
             else{
                 //Add idle animations here
+                if (beingspotted){
+                    characterSpotted.SetActive(false);
+                    beingspotted = false;
+                }
                 anim.SetInteger ("walk", 0);
                 anim.SetInteger ("run", 0);
                 anim.SetInteger ("attack2", 0);
@@ -196,20 +213,43 @@ public class BearMove : MonoBehaviour
             }
         }
         else{
-            navMeshA.SetDestination(runAwayPos);
-            anim.SetInteger ("run", 0);
-            anim.SetInteger ("attack2", 0);
-            anim.SetInteger ("howl", 0);
-            anim.SetInteger ("walk", 1);
-            navMeshA.speed = 5.0f;
-            //Debug.DrawLine (runAwayPos, transform.position, Color.cyan);
-            if (Vector3.Distance(new Vector3(runAwayPos.x, transform.position.y, runAwayPos.z), transform.position) <= 5){
-                scaredAway = false;
+            if (beingspotted){
+                characterSpotted.SetActive(false);
+                beingspotted = false;
+            }
+            navMeshA.CalculatePath(runAwayPos, navMeshPath);
+            if (!(navMeshPath.status == NavMeshPathStatus.PathComplete || navMeshA.hasPath && navMeshPath.status == NavMeshPathStatus.PathPartial)){ //If bear gets stuck then it sets random destination
+                isstuck = true;
                 navMeshA.speed = 0.0f;
                 anim.SetInteger ("walk", 0);
                 anim.SetInteger ("run", 0);
                 anim.SetInteger ("attack2", 0);
                 anim.SetInteger ("howl", 0);
+                if(Time.time-lastactiontime > 3.0f){ 
+                    PlayHowl();
+                }
+                if (Time.time-stucktimer >= 20.0f){
+                    scaredAway = false;
+                }
+            }
+            else{
+                navMeshA.SetDestination(runAwayPos);
+                anim.SetInteger ("run", 0);
+                anim.SetInteger ("attack2", 0);
+                anim.SetInteger ("howl", 0);
+                if (!(isstuck)){
+                    anim.SetInteger ("walk", 1);
+                    navMeshA.speed = 5.0f;
+                }
+                //Debug.DrawLine (runAwayPos, transform.position, Color.cyan);
+                if (Vector3.Distance(new Vector3(runAwayPos.x, transform.position.y, runAwayPos.z), transform.position) <= 5){
+                    scaredAway = false;
+                    navMeshA.speed = 0.0f;
+                    anim.SetInteger ("walk", 0);
+                    anim.SetInteger ("run", 0);
+                    anim.SetInteger ("attack2", 0);
+                    anim.SetInteger ("howl", 0);
+                }
             }
         }
     }

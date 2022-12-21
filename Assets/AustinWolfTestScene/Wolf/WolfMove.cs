@@ -33,6 +33,8 @@ public class WolfMove : MonoBehaviour
     private float gameovertimer;
     private GameObject UImanager;
     private GameObject GameOver;
+    private GameObject characterSpotted;
+    private bool beingspotted;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,6 +51,8 @@ public class WolfMove : MonoBehaviour
         timer=0;
         triggered = false;
         source = gameObject.GetComponent<AudioSource>();
+        characterSpotted = GameObject.Find("AnimalLockOnText");
+        beingspotted = false;
     }
 
     // Update is called once per frame
@@ -90,6 +94,9 @@ public class WolfMove : MonoBehaviour
             //Player must have "Player" tag for this to work
             if ((((Vector3.Angle(dest.position - transform.position, transform.forward) <= fieldofview && Vector3.Distance(dest.position, transform.position) <= 150 && doesHitplayer) || Vector3.Distance(dest.position, transform.position) <= stalkingdistance) || Vector3.Distance(dest.position, transform.position) <= hearingdistance && Time.time-lastactiontime > 3) && !(anim.GetCurrentAnimatorStateInfo(0).IsName("howl") || anim.GetAnimatorTransitionInfo(0).IsName("breathes -> howl") || anim.GetAnimatorTransitionInfo(0).IsName("howl -> breathes")) && DoesPathExist){ 
                 //If wolf is within hearing distance of player
+                characterSpotted.SetActive(true);
+                characterSpotted.transform.localScale = Vector3.one;
+                beingspotted = true;
                 if (Vector3.Distance(dest.position, transform.position) <= hearingdistance) {
                     //If wolf is within attacking distance of player
                     if(Vector3.Distance(dest.position, transform.position) <= attackdistance){
@@ -143,6 +150,10 @@ public class WolfMove : MonoBehaviour
             }
             else{
                 //Add idle animations here
+                if (beingspotted){
+                    characterSpotted.SetActive(false);
+                    beingspotted = false;
+                }
                 anim.SetInteger ("eat", 0);
                 anim.SetInteger ("walk", 0);
                 anim.SetInteger ("run", 0);
@@ -157,6 +168,10 @@ public class WolfMove : MonoBehaviour
             triggered = false;
         }
         else{
+            if (beingspotted){
+                characterSpotted.SetActive(false);
+                beingspotted = false;
+            }
             navMeshA.isStopped = false;
             anim.SetInteger ("walk", 0);
             anim.SetInteger ("attack2", 0);

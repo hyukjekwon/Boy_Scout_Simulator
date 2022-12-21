@@ -15,8 +15,13 @@ public class UI_Management : MonoBehaviour
     private Button KeyBindsBtn;
     private Button VolumeBtn;
     private Button RestartBtn;
-    //Checkpoint button
-    private Button TryAgainBtn;
+    //Checkpoint buttons
+    private Button TryAgainBtnCheckpoint0;
+    private Button TryAgainBtnCheckpoint1;
+    private Button TryAgainBtnCheckpoint2;
+    private Button TryAgainBtnCheckpoint3;
+    ///////////////////////////
+    private GameObject spawnblock;
     private GameObject gameover;
     private Slider SfxSlider;
     private Slider MusicSlider;
@@ -47,7 +52,7 @@ public class UI_Management : MonoBehaviour
     private bool gameStarted;
     private bool gamePaused;
     private int meatCount;
-
+    private int GameProgression;
     void ToggleUIElement(GameObject elem) {
         if (elem.transform.localScale.Equals(Vector3.zero)) {
             if (lastActive) {
@@ -106,13 +111,15 @@ public class UI_Management : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameProgression = CheckpointManager.gameprogress;
+        spawnblock = GameObject.Find("SpawnBlock");
         gameover = GameObject.Find("GameOver"); 
         fpsController = GameObject.Find("First Person Controller");
         fpsScript = fpsController.GetComponent<FirstPersonMovement>();
         jumpScript = fpsController.GetComponent<Jump>();
         crouchScript = fpsController.GetComponent<Crouch>();
         interactionsScript = fpsController.GetComponent<GameInteractions>();
-
+        fpsController.transform.position = spawnblock.transform.position;
         Click = GameObject.Find("click").GetComponent<AudioSource>();
         Scroll = GameObject.Find("scroll").GetComponent<AudioSource>();
         Fail = GameObject.Find("GameOver").GetComponent<AudioSource>();
@@ -159,13 +166,33 @@ public class UI_Management : MonoBehaviour
         });
 
         // THESE ARE THE BUTTONS ON THE GAME OVER SCREEN
-        //Spawnpos: fpsController.transform.position = new Vector3(437.79f, 11.72f, 357.79f);
-        //Checkpoint1: fpsController.transform.position = new Vector3(561f, 41.4f, 934.736f);
-        TryAgainBtn = GameObject.Find("TryAgainBtn").GetComponent<Button>();
-        TryAgainBtn.onClick.AddListener(() => {
+        //Spawnpos: spawnblock.transform.position = new Vector3(437.79f, 11.72f, 357.79f);
+        //Checkpoint1: spawnblock.transform.position = new Vector3(561f, 41.4f, 934.736f);
+        TryAgainBtnCheckpoint0 = GameObject.Find("TryAgainBtn0").GetComponent<Button>();
+        TryAgainBtnCheckpoint0.onClick.AddListener(() => {
+            Click.Play();
+            spawnblock.transform.position = new Vector3(437.79f, 11.72f, 357.79f);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        });
+        TryAgainBtnCheckpoint1 = GameObject.Find("TryAgainBtn1").GetComponent<Button>();
+        TryAgainBtnCheckpoint1.onClick.AddListener(() => {
+            Click.Play();
+            spawnblock.transform.position = new Vector3(561f, 41.4f, 934.736f);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        });
+        
+        TryAgainBtnCheckpoint2 = GameObject.Find("TryAgainBtn2").GetComponent<Button>();
+        TryAgainBtnCheckpoint2.onClick.AddListener(() => {
             Click.Play();
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         });
+        
+        TryAgainBtnCheckpoint3 = GameObject.Find("TryAgainBtn3").GetComponent<Button>();
+        TryAgainBtnCheckpoint3.onClick.AddListener(() => {
+            Click.Play();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        });
+        ////////////////////////////////////////////////////////////////////////////////////////
 
         PauseEmpty = GameObject.Find("PauseMenu");
         PauseEmpty.transform.localScale = Vector3.zero;
@@ -226,6 +253,27 @@ public class UI_Management : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Checkpoint stuff /////////////////////////////////////////////////////////////////////////
+        GameProgression = CheckpointManager.gameprogress;
+        if (!(GameProgression >= 1)){
+            TryAgainBtnCheckpoint1.gameObject.SetActive(false);
+        }
+        else{
+            TryAgainBtnCheckpoint1.gameObject.SetActive(true);
+        }
+        if (!(GameProgression >= 2)){
+            TryAgainBtnCheckpoint2.gameObject.SetActive(false);
+        }
+        else{
+            TryAgainBtnCheckpoint2.gameObject.SetActive(true);
+        }
+        if (!(GameProgression >= 3)){
+            TryAgainBtnCheckpoint3.gameObject.SetActive(false);
+        }
+        else{
+            TryAgainBtnCheckpoint3.gameObject.SetActive(true);
+        }
+        ////////////////////////////////////////////////////////////////////////////////////////////
         if (gameStarted) {
             if (PauseEmpty.transform.position.x < PausePosition.x) {            // Animate pause panel
                 PauseEmpty.transform.position += new Vector3(currSpeed, 0, 0) * Time.unscaledDeltaTime;
