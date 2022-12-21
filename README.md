@@ -5,6 +5,15 @@
 - Jared: Terrain and map design, scoutmaster voiceover/scripting
 - Hyuk-Je: Sounds, walkie talkie, UI, game logic, sketches, misc
 
+## Scripts Worked On
+### Brandon Halig
+- GameInteractions.cs 100%
+    - Keeps track of player's orienteering objectives, plays radio commands, updates the player's notes list
+- ArrowDirection.cs 100%
+    - Points the compass in the North direction
+- FirstPersonAudio.cs 10%
+    - Added functionality for pacing footsteps
+
 ## Sound Effects
 - Environment
     - [Forest](https://www.youtube.com/watch?v=VxrH8mUWyGc)
