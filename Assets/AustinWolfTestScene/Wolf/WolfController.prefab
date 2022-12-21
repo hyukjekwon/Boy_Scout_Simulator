@@ -1501,8 +1501,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5257f2e42a3423e4b8bfbfe0f583026a, type: 3}
   - {fileID: 8300000, guid: 152a9ccb4ac48d74baf14f9a82c263e9, type: 3}
   - {fileID: 8300000, guid: e35e39e4b831a154a9050b9dc7e83f5b, type: 3}
-  Growls: []
-  Breaths: []
+  Growls:
+  - {fileID: 8300000, guid: bb5068d1ba749534490e378fe59592e2, type: 3}
+  Breaths:
+  - {fileID: 8300000, guid: 916f3aef45d198c499b85ecefb818aa0, type: 3}
+  - {fileID: 8300000, guid: 9c5cae8115e27cd429da8a417b9e504e, type: 3}
+  - {fileID: 8300000, guid: f6ebc5ce7abffb24ea4be1980e643958, type: 3}
+  - {fileID: 8300000, guid: 382d116e079c5ef469ba38f563efe61d, type: 3}
   PieceOfCandy: {fileID: 0}
   speed: 0
   stalkingdistance: 100

@@ -99,7 +99,7 @@ public class WolfMove : MonoBehaviour
                         anim.SetInteger ("walk", 0);
                         navMeshA.speed = 0.0f;
                         navMeshA.isStopped = true;
-                        if(Time.time-lastactiontime > Random.Range(3.0f, 5.0f)){ 
+                        if(Time.time-lastactiontime > Random.Range(1.0f, 3.0f)){ 
                             PlayGrowl();
                         }
                     }
@@ -144,6 +144,9 @@ public class WolfMove : MonoBehaviour
             navMeshA.isStopped = false;
             anim.SetInteger ("walk", 0);
             anim.SetInteger ("attack2", 0);
+            if(Time.time-lastactiontime > 1.0f){
+                PlayBreath();
+            }
             if(!(PieceOfCandy.GetComponent<Candy>().candyLanded || triggered)){
                 NavMeshHit navhitpoint;
                 if (NavMesh.SamplePosition(PieceOfCandy.transform.position, out navhitpoint, 50.0f, NavMesh.AllAreas)){
@@ -196,7 +199,7 @@ public class WolfMove : MonoBehaviour
         lastactiontime = Time.time;
         if (Growls.Length > 0){
             AudioClip NextGrowl = Growls[Random.Range(0, Growls.Length)];
-            AudioSource.PlayClipAtPoint(NextGrowl, transform.position, source.volume);
+            AudioSource.PlayClipAtPoint(NextGrowl, transform.position, source.volume*0.5f); //So loud it damn near broke my headphones
         }
     }
     void PlayBreath(){

@@ -38,11 +38,11 @@ public class BearMove : MonoBehaviour
         dest = player.transform;
         anim = GetComponent<Animator>();
         navMeshA = GetComponent<NavMeshAgent>();
+        source = gameObject.GetComponent<AudioSource>();
         speed = navMeshA.speed;
         lastactiontime = Time.time;
         timer = 0;
         LastPos = player.transform.position;
-        source = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -122,9 +122,15 @@ public class BearMove : MonoBehaviour
                         }
                         if(timer >= 1f){ //If player stay still for 1 seconds then run away
                             scaredAway = true;
-                            runAwayPos = transform.position - transform.forward * 100f;
+                            NavMeshHit hitpos;
+                            if (NavMesh.SamplePosition(transform.position - transform.forward * 100f, out hitpos, 1.0f, NavMesh.AllAreas)){
+                                runAwayPos = hitpos.position;
+                            }
+                            else{
+                                runAwayPos = transform.position - transform.forward * 40f;
+                            }
                         }
-                        Debug.Log(timer);
+                        //Debug.Log(timer);
                         LastPos = player.transform.position;
                     }
                 }
@@ -138,10 +144,16 @@ public class BearMove : MonoBehaviour
                     }
                     if(timer >= 1f){ //If player stay still for 1 seconds then run away
                         scaredAway = true;
-                        runAwayPos = transform.position - transform.forward * 40f;
+                        NavMeshHit hitpos;
+                        if (NavMesh.SamplePosition(transform.position - transform.forward * 100f, out hitpos, 1.0f, NavMesh.AllAreas)){
+                            runAwayPos = hitpos.position;
+                        }
+                        else{
+                            runAwayPos = transform.position - transform.forward * 40f;
+                        }
                     }
                     LastPos = player.transform.position;
-                    Debug.Log(timer);
+                    //Debug.Log(timer);
                     anim.SetInteger ("walk", 1);
                     anim.SetInteger ("run", 0);
                     navMeshA.speed = 5.0f;

@@ -36,9 +36,9 @@ public class BlackBearMove : MonoBehaviour
         dest = player.transform;
         anim = GetComponent<Animator>();
         navMeshA = GetComponent<NavMeshAgent>();
+        source = gameObject.GetComponent<AudioSource>();
         speed = navMeshA.speed;
         lastactiontime = Time.time;
-        source = gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -87,7 +87,6 @@ public class BlackBearMove : MonoBehaviour
                         anim.SetInteger ("run", 0);
                         anim.SetInteger ("walk", 0);
                         navMeshA.speed = 0.0f;
-                        navMeshA.isStopped = true;
                         if(Time.time-lastactiontime > Random.Range(3.0f, 5.0f)){ 
                             PlayGrowl();
                         }
@@ -108,10 +107,16 @@ public class BlackBearMove : MonoBehaviour
                         else{
                             navMeshA.SetDestination(dest.transform.position); //If there is no ground beneath the player then set the destination to the players position
                         }
-
-                        //Test to see if player yells
-                        if(Input.GetKeyDown("r")){ 
-                            scaredAway = true;
+                    }
+                    //Test to see if player yells
+                    if(Input.GetKeyDown("r")){ 
+                        scaredAway = true;
+                        navMeshA.speed = 15.0f;
+                        NavMeshHit hitpos;
+                        if (NavMesh.SamplePosition(transform.position - transform.forward * 100f, out hitpos, 1.0f, NavMesh.AllAreas)){
+                            runAwayPos = hitpos.position;
+                        }
+                        else{
                             runAwayPos = transform.position - transform.forward * 100f;
                         }
                     }
@@ -136,7 +141,7 @@ public class BlackBearMove : MonoBehaviour
                 anim.SetInteger ("walk", 0);
                 anim.SetInteger ("run", 0);
                 anim.SetInteger ("attack2", 0);
-                navMeshA.isStopped = true;
+                navMeshA.speed = 0.0f;
                 anim.SetInteger ("howl", 0);
                 if(Time.time-lastactiontime > 10.0f){ //One random howl a minute
                     PlayHowl();
@@ -145,8 +150,12 @@ public class BlackBearMove : MonoBehaviour
         }
         else{
             navMeshA.SetDestination(runAwayPos);
+            anim.SetInteger ("walk", 0);
+            anim.SetInteger ("attack2", 0);
+            anim.SetInteger ("howl", 0);
             anim.SetInteger ("run", 1);
             navMeshA.speed = 15.0f;
+            Debug.DrawLine(new Vector3(runAwayPos.x, transform.position.y, runAwayPos.z), transform.position, Color.cyan);
             //Debug.DrawLine (runAwayPos, transform.position, Color.cyan);
             if (Vector3.Distance(new Vector3(runAwayPos.x, transform.position.y, runAwayPos.z), transform.position) <= 5){
                 scaredAway = false;

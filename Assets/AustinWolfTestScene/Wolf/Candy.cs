@@ -10,9 +10,10 @@ public class Candy : MonoBehaviour
     private Rigidbody body;
     private TextMeshProUGUI meatCount;
     private AudioSource Whoosh;
+    private GameObject MeatCounter;
     public bool candyLanded;
     bool canthrownew;
-    public int candyCount = 10;
+    public int candyCount = 5;
     private float timer;
     // Start is called before the first frame update
     void Start()
@@ -22,7 +23,7 @@ public class Candy : MonoBehaviour
         candyLanded = false;
         body = GetComponent<Rigidbody>();
         timer = 0;
-        GameObject MeatCounter = GameObject.Find("MeatCounter");
+        MeatCounter = GameObject.Find("MeatCounter");
         meatCount = MeatCounter.GetComponent<TextMeshProUGUI>();
         Whoosh = MeatCounter.GetComponent<AudioSource>();
     }
