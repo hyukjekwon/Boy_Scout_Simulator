@@ -39,4 +39,4 @@
     - Scroll when moving sliders (just click but repeating when the value changes)
 ## MAP - Jared Starman
 ### Unity Assets Cited (all modified with collision assets)
-- [MILITARY VEHICLE] https://assetstore.unity.com/packages/3d/vehicles/land/military-vehicle-9225
+- [MILITARY VEHICLE](https://assetstore.unity.com/packages/3d/vehicles/land/military-vehicle-9225)
