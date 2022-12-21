@@ -40,3 +40,8 @@
 ## MAP - Jared Starman
 ### Unity Assets Cited (all modified with collision assets)
 - [MILITARY VEHICLE](https://assetstore.unity.com/packages/3d/vehicles/land/military-vehicle-9225)
+- [GAZ 66](https://assetstore.unity.com/publishers/2837)
+- [Military Truck PBR](https://assetstore.unity.com/packages/3d/vehicles/land/military-truck-pbr-41450)
+- [M3A1 Scout Car](https://assetstore.unity.com/packages/3d/vehicles/land/m3a1-scout-car-53149)
+- [Old Hangar](https://assetstore.unity.com/packages/3d/environments/historic/old-hangar-119037)
+- [Super Spitfire](https://assetstore.unity.com/packages/3d/vehicles/air/super-spitfire-53217)
