@@ -35,7 +35,7 @@
 ## MAP - Jared Starman
 ### MAP ORGANIZATION
 The Map is divided into 4 sections
-#### Tile 1
+#### Tile 1/Tutorial
 This section is where the player starts. They learn the basics of orineteering, with lightposts teaching them how to do it properly
 
 #### Tile 2 - Forest
