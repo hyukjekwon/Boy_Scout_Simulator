@@ -94,25 +94,25 @@ public class GameInteractions : MonoBehaviour
         else if (Vector3.Distance(transform.position, objective4_1.transform.position) < 15 && objectiveToFind == 4 && objective4_1Found == false){
             if (Input.GetKeyDown(KeyCode.E)){
                 objective4_1Found = true;
-                notes.GetComponent<TMPro.TextMeshPro>().SetText("Creashed Plane " + (objective4_1Found ? "✓" : "") + "\n\nTruck 1 " + (objective4_2Found ? "✓" : "") + "\n\nTruck 2 " + (objective4_3Found ? "✓" : "") + "\n\nTruck 3 " + (objective4_4Found ? "✓" : ""));
+                notes.GetComponent<TMPro.TextMeshPro>().SetText("Crashed Plane " + (objective4_1Found ? "✓" : "") + "\n\nTruck 1 " + (objective4_2Found ? "✓" : "") + "\n\nTruck 2 " + (objective4_3Found ? "✓" : "") + "\n\nTruck 3 " + (objective4_4Found ? "✓" : ""));
             }
         }
         else if (Vector3.Distance(transform.position, objective4_2.transform.position) < 10 && objectiveToFind == 4 && objective4_2Found == false){
             if (Input.GetKeyDown(KeyCode.E)){
                 objective4_2Found = true;
-                notes.GetComponent<TMPro.TextMeshPro>().SetText("Creashed Plane " + (objective4_1Found ? "✓" : "") + "\n\nTruck 1 " + (objective4_2Found ? "✓" : "") + "\n\nTruck 2 " + (objective4_3Found ? "✓" : "") + "\n\nTruck 3 " + (objective4_4Found ? "✓" : ""));
+                notes.GetComponent<TMPro.TextMeshPro>().SetText("Crashed Plane " + (objective4_1Found ? "✓" : "") + "\n\nTruck 1 " + (objective4_2Found ? "✓" : "") + "\n\nTruck 2 " + (objective4_3Found ? "✓" : "") + "\n\nTruck 3 " + (objective4_4Found ? "✓" : ""));
             }
         }
         else if (Vector3.Distance(transform.position, objective4_3.transform.position) < 10 && objectiveToFind == 4 && objective4_3Found == false){
             if (Input.GetKeyDown(KeyCode.E)){
                 objective4_3Found = true;
-                notes.GetComponent<TMPro.TextMeshPro>().SetText("Creashed Plane " + (objective4_1Found ? "✓" : "") + "\n\nTruck 1 " + (objective4_2Found ? "✓" : "") + "\n\nTruck 2 " + (objective4_3Found ? "✓" : "") + "\n\nTruck 3 " + (objective4_4Found ? "✓" : ""));
+                notes.GetComponent<TMPro.TextMeshPro>().SetText("Crashed Plane " + (objective4_1Found ? "✓" : "") + "\n\nTruck 1 " + (objective4_2Found ? "✓" : "") + "\n\nTruck 2 " + (objective4_3Found ? "✓" : "") + "\n\nTruck 3 " + (objective4_4Found ? "✓" : ""));
             }
         }
         else if (Vector3.Distance(transform.position, objective4_4.transform.position) < 10 && objectiveToFind == 4 && objective4_4Found == false){
             if (Input.GetKeyDown(KeyCode.E)){
                 objective4_4Found = true;
-                notes.GetComponent<TMPro.TextMeshPro>().SetText("Creashed Plane " + (objective4_1Found ? "✓" : "") + "\n\nTruck 1 " + (objective4_2Found ? "✓" : "") + "\n\nTruck 2 " + (objective4_3Found ? "✓" : "") + "\n\nTruck 3 " + (objective4_4Found ? "✓" : ""));
+                notes.GetComponent<TMPro.TextMeshPro>().SetText("Crashed Plane " + (objective4_1Found ? "✓" : "") + "\n\nTruck 1 " + (objective4_2Found ? "✓" : "") + "\n\nTruck 2 " + (objective4_3Found ? "✓" : "") + "\n\nTruck 3 " + (objective4_4Found ? "✓" : ""));
             }
         }
         else if (Vector3.Distance(transform.position, objective5.transform.position) < 2 && objectiveToFind == 5){
